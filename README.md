@@ -1,66 +1,37 @@
-## Foundry
+# ➕✖️➗ Foundry Calculator
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## 📝 Overview
 
-Foundry consists of:
+`Calculadora` is a Solidity smart contract that implements a basic calculator with historical results tracking for sums and access control (admin-only division). Developed using Foundry framework for testing experimentation.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## ✨ Features
 
-## Documentation
+- 🔢 **Basic Math Operations**:
+  - `addition`, `substraction`, `multiplier`, `division`, `power`
+- 🔐 **Admin Controls**:
+  - Restricted `division` function to admin only
+- 📊 **Historical Tracking**:
+  - Stores last 10 addition results (reverts after limit)
+- 🧪 **Test Coverage**:
+  - Unit tests for all operations
+  - Advanced fuzzing tests for division and power functions
+  - Edge case testing (overflows, admin restrictions)
 
-https://book.getfoundry.sh/
+## 🧪 Testing with Foundry
 
-## Usage
+| Test Function                          | Key Verification             |
+| -------------------------------------- | ---------------------------- |
+| `testAddition()`                       | Tests sum results            |
+| `testSubstraction()`                   | Tests subtraction results    |
+| `testMultiplier()`                     | Tests multiplication results |
+| `testCanNotMultiply2LargeNumbers()`    | Prevents integer overflow    |
+| `testAdminCanCallDivisionCorrectly()`  | Admin privileges work        |
+| `testIfNotAdminCallsDivisionReverts()` | Non-admin blocks             |
+| `testCanNotDivideBy0()`                | Division protection          |
+| `testPower()`                          | Tests exponentiation         |
+| `testResetResultado()`                 | Proper reset functionality   |
+| `testAddToHistoricalSums()`            | Stores sum results correctly |
 
-### Build
+## 📜 License
 
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+This project is licensed under the MIT License.
